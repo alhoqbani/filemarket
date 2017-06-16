@@ -22,6 +22,18 @@ class FileController extends Controller
         return view('account.files.create', compact('file'));
     }
     
+    public function edit(File $file)
+    {
+        $this->authorize('touch', $file);
+        
+        return view('account.files.edit', compact('file'));
+    }
+    
+    public function update(File $file)
+    {
+        dd($file);
+    }
+    
     public function store(StoreFileRequest $request, File $file)
     {
         $this->authorize('touch', $file);
