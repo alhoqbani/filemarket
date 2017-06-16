@@ -17,6 +17,15 @@ class File extends Model
     }
     
     
+    protected static function boot()
+    {
+        parent::boot();
+        
+        self::creating(function ($file) {
+            $file->identifier = uniqid(true);
+        });
+    }
+    
     public function users()
     {
         return $this->belongsTo(User::class);
