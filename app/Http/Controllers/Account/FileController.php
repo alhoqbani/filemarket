@@ -26,8 +26,9 @@ class FileController extends Controller
     public function edit(File $file)
     {
         $this->authorize('touch', $file);
+        $approval = $file->approvals()->first();
         
-        return view('account.files.edit', compact('file'));
+        return view('account.files.edit', compact('file', 'approval'));
     }
     
     public function update(UpdateFileRequest $request, File $file)
@@ -39,7 +40,7 @@ class FileController extends Controller
         
         if ($file->needsApproval($ApprovalProperties)) {
             $file->createApproval($ApprovalProperties);
-    
+            
             return back()->with('success', 'We will review your changes soon.');
         }
         
