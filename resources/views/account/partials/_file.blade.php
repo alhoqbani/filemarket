@@ -6,7 +6,7 @@
                     {{ $file->isFree() ? 'Free' : '£' . $file->price }}
                 </p>
                 @if(!$file->approved)
-                    <p class="level-item">
+                    <p class="level-item tag is-warning">
                         Pending approval
                     </p>
                 @endif
