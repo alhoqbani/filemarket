@@ -37,10 +37,11 @@ class UploadController extends Controller
     
     public function destroy(File $file, Upload $upload, Request $request)
     {
-        abort(500);
         $this->authorize('touch', $file);
         $this->authorize('touch', $upload);
-//        $upload->delete();
+        $upload->delete();
+        Storage::delete('/files/' . $file->identifier . '/' . $upload->filename);
+        
         return response()->json(['m' => 'ok']);
     }
     
