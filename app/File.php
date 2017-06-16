@@ -41,4 +41,10 @@ class File extends Model
     {
         return $this->price == 0;
     }
+    
+    public function approvals()
+    {
+        return $this->hasMany(FileApproval::class);
+    }
+    
 }
