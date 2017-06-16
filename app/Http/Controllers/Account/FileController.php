@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Account;
 
 use App\File;
 use App\Http\Requests\File\StoreFileRequest;
+use App\Http\Requests\File\UpdateFileRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -29,7 +30,7 @@ class FileController extends Controller
         return view('account.files.edit', compact('file'));
     }
     
-    public function update(File $file)
+    public function update(UpdateFileRequest $request, File $file)
     {
         dd($file);
     }
