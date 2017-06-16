@@ -18,6 +18,14 @@ class StoreFileRequest extends FormRequest
         return true;
     }
     
+    protected function validationData()
+    {
+        $this->merge(['uploads' => $this->file->id]);
+        
+        return $this->all();
+    }
+    
+    
     /**
      * Get the validation rules that apply to the request.
      *

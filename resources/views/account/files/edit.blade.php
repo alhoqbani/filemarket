@@ -4,12 +4,19 @@
     <h1 class="title">Make changes to {{ $file->title }}</h1>
 
     @if($approval)
-    @include('account.files.partials._changes', compact('approval', 'file'))
+        @include('account.files.partials._changes', compact('approval', 'file'))
     @endif
 
     <form action="{{ route('account.files.update', $file) }}" method="post" class="form">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
+
+        <div class="field">
+            <div id="file" class="dropzone"></div>
+            @if ($errors->has('uploads'))
+                <p class="help is-danger">{{ $errors->first('uploads') }}</p>
+            @endif
+        </div>
 
         {{--<input type="hidden" name="live" value="false">--}}
 
@@ -74,4 +81,8 @@
             <p>Your file changes may be subject to review.</p>
         </div>
     </form>
+@endsection
+
+@section('scripts')
+    @include('account.files.partials._files_upload_js')
 @endsection
