@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\HasApprovals;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Upload extends Model
 {
     
-    use SoftDeletes;
+    use SoftDeletes, HasApprovals;
     protected $guarded = [];
     
     public function file()
@@ -20,10 +21,5 @@ class Upload extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-    
-    public function scopeUnapproved(Builder $query)
-    {
-        return $query->where('approved', false);
     }
 }
