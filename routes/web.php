@@ -15,3 +15,5 @@ Route::group(['prefix' => '/account', 'middleware' => ['auth'], 'namespace' => '
     });
 });
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::post('/{file}/upload', 'Upload\UploadController@store')->name('upload.store');

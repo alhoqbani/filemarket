@@ -62,10 +62,5 @@
 @endsection
 
 @section('scripts')
-    <script>
-        var drop = new Dropzone('#file', {
-            url: '/'
-        })
-
-    </script>
+    @include('account.files.partials._files_upload.js')
 @endsection
