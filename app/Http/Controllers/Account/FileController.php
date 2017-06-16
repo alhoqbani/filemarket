@@ -31,6 +31,13 @@ class FileController extends Controller
         dd($file);
     }
     
+    public function index()
+    {
+        $files = auth()->user()->files()->latest()->finished()->get();
+        
+        return view('account.files.index', compact('files'));
+    }
+    
     private function createAndReturnSkeletonFile()
     {
         return auth()->user()->files()->create([
