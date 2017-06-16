@@ -18,7 +18,7 @@
                    onclick="event.preventDefault(); document.getElementById('logout').submit();">
                     Sign Out
                 </a>
-                <a href="#" class="nav-item">
+                <a href="{{route('account')}}" class="nav-item">
                     Your Account
                 </a>
             @else
