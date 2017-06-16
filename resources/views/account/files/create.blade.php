@@ -62,5 +62,5 @@
 @endsection
 
 @section('scripts')
-    @include('account.files.partials._files_upload.js')
+    @include('account.files.partials._files_upload_js')
 @endsection

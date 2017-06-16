@@ -35,6 +35,15 @@ class UploadController extends Controller
         ]);
     }
     
+    public function destroy(File $file, Upload $upload, Request $request)
+    {
+        abort(500);
+        $this->authorize('touch', $file);
+        $this->authorize('touch', $upload);
+//        $upload->delete();
+        return response()->json(['m' => 'ok']);
+    }
+    
     /**
      * @param \App\File $file
      * @param           $uploadedFile
