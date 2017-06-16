@@ -28,7 +28,10 @@ class FileController extends Controller
         $file->fill($request->only(['title', 'overview_short', 'overview', 'price']));
         $file->finished = true;
         $file->save();
-        dd($file);
+        
+        
+        return redirect()->route('account.files.index')
+            ->with('success', 'Thanks, submitted for review');
     }
     
     public function index()

@@ -25,10 +25,10 @@ class StoreFileRequest extends FormRequest
     public function rules()
     {
         return [
-//            'title'          => 'required|max:255',
-//            'overview_short' => 'required|max:300',
-//            'overview'       => 'required|max:5000',
-//            'price'          => 'required|numeric',
+            'title'          => 'required|max:255',
+            'overview_short' => 'required|max:300',
+            'overview'       => 'required|max:5000',
+            'price'          => 'required|numeric',
         ];
     }
 }
