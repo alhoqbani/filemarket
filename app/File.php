@@ -39,6 +39,12 @@ class File extends Model
         return $this->belongsTo(User::class);
     }
     
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class);
+    }
+    
+    
     public function scopeFinished(Builder $builder)
     {
         return $builder->where('finished', true);
