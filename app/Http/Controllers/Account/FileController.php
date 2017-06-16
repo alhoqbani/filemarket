@@ -35,8 +35,12 @@ class FileController extends Controller
         $this->authorize('touch', $file);
 //        dd($request->get('live'));
         
-        if ($file->needsApproval($request->only(File::APPROVAL_PROPERTIES))) {
-            dd('needs Approva');
+        $ApprovalProperties = $request->only(File::APPROVAL_PROPERTIES);
+        
+        if ($file->needsApproval($ApprovalProperties)) {
+            $file->createApproval($ApprovalProperties);
+    
+            return back()->with('success', 'We will review your changes soon.');
         }
         
         $file->update([

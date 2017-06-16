@@ -73,4 +73,9 @@ class File extends Model
         return array_only($this->toArray(), self::APPROVAL_PROPERTIES) != $approvalProperties;
     }
     
+    public function createApproval(array $approvalProperties)
+    {
+        $this->approvals()->create($approvalProperties);
+    }
+    
 }
