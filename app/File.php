@@ -12,6 +12,13 @@ class File extends Model
     use SoftDeletes;
     protected $guarded = [];
     
+    const APPROVAL_PROPERTIES = [
+        'title',
+        'overview_short',
+        'overview',
+    ];
+    
+    
     public function getRouteKeyName()
     {
         return 'identifier';
@@ -45,6 +52,25 @@ class File extends Model
     public function approvals()
     {
         return $this->hasMany(FileApproval::class);
+    }
+    
+    public function needsApproval(array $approvalProperties)
+    {
+        if ($this->currentPropertiesDifferToGiven($approvalProperties)) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * @param array $approvalProperties
+     *
+     * @return bool
+     */
+    protected function currentPropertiesDifferToGiven(array $approvalProperties): bool
+    {
+        return array_only($this->toArray(), self::APPROVAL_PROPERTIES) != $approvalProperties;
     }
     
 }

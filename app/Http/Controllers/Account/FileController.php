@@ -32,7 +32,19 @@ class FileController extends Controller
     
     public function update(UpdateFileRequest $request, File $file)
     {
-        dd($file);
+        $this->authorize('touch', $file);
+//        dd($request->get('live'));
+        
+        if ($file->needsApproval($request->only(File::APPROVAL_PROPERTIES))) {
+            dd('needs Approva');
+        }
+        
+        $file->update([
+            'price' => $request->get('price'),
+            'live'  => $request->has('live') ? true : false,
+        ]);
+        
+        return back()->with('success', 'Updated !!');
     }
     
     public function store(StoreFileRequest $request, File $file)
